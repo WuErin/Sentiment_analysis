@@ -34,6 +34,7 @@ for i in xrange(raw_data.shape[0]):
         train_data.append(review)
         train_senti.append(raw_data["sentiment"][i])
 print("1")
+
 # generate matrix
 train_tfidf = count_tfidf(train_data)
 test_tfidf = count_tfidf(test_data)

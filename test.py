@@ -7,13 +7,14 @@ from count_tfidf import count_tfidf
 import nltk
 from sklearn.naive_bayes import MultinomialNB
 import numpy as np
+from sklearn import svm
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 raw_data = pandas.read_csv("input_data\\labeledTrainData.tsv", header=0, delimiter="\t", quoting=3)
 
 # generate test data index
-a = Random();a.seed(2)
+a = Random();a.seed(1)
 test_index = a.sample(range(raw_data.shape[0]),5000)
 
 # data preprocessing
@@ -37,10 +38,20 @@ print("1")
 train_tfidf = count_tfidf(train_data)
 test_tfidf = count_tfidf(test_data)
 print("2")
+
+# Naive Bayes in sklearn package
 clf = MultinomialNB()
 clf.fit(train_tfidf,train_senti)
 test_predicted = clf.predict(test_tfidf.toarray())
 print(np.mean(test_senti==test_predicted))
+
+
+# SVM method in sklearn package
+# clf = svm.SVC(kernel="rbf", C = 1)
+# clf.fit(train_tfidf,train_senti)
+# test_predicted = clf.predict(test_tfidf.toarray())
+# print(np.mean(test_senti==test_predicted))
+
 
 # use NB in nltk package
 # def change_to_dict(dataset):

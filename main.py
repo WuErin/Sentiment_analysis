@@ -17,6 +17,8 @@ test_rawdata = read_files("input_data\\testData.tsv")
 train_cleandata = read_by_line("input_data\\output_train.txt")
 test_cleandata = read_by_line("input_data\\output_test.txt")
 
+print train_cleandata
+
 b = time.time()
 print "read files spend" +str(b-a)+"second"
 
